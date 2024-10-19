@@ -1,0 +1,14 @@
+body;
+  head;
+    link 
+      %href=style.css
+      %rel=stylesheet 
+      %type=text/css
+    ;
+
+  body;
+
+    component-tag
+      %src=./Card.Skeuomorphism.html 
+      %reloads=no
+    ;

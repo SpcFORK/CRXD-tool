@@ -2,176 +2,108 @@ var chubLocation = "html"
 
 var chubDev = true
 
-// You don't really need this if you use beamChub()
-var input = `
+function makeCRX(id) {
+  const url = new URL('https://clients2.google.com/service/update2/crx');
 
-html;
-  // HEADER
-  head;
-    meta %charset=utf-8;
-    meta %name=viewport %content=width|edevice-width;
-    meta %name=msapplication-TileColor %content=#ff8800;
-    meta %name=theme-color %content=#ff8800;
-    
-    title;
-      "Chub Syntax! | Home";
-    
-    link %href=tempPage/style.css %rel=stylesheet %type=text/css;
-    
-    link %sizes=180x180 %rel=apple-touch-icon %href=tempPage/apple-touch-icon.png;
-    link %sizes=32x32 %rel=icon %type=image/png %href=tempPage/favicon-32x32.png;
-    link %sizes=16x16 %rel=icon %type=image/png %href=tempPage/favicon-16x16.png;
-    link %href=tempPage/site.webmanifest %rel=manifest;
-    link %href=tempPage/safari-pinned-tab.svg %rel=mask-icon %color=#ff8800;
-  //
-  
-  // BODY
-  body;
-    nav;
-      div .navHold;
-        div .navTitle;
-          h2;
-            "CHUBML - CML";
-        span .pipeDiv;
-          "|";
-        div .navCont;
-          a .link-url %href=template.js;
-            "Template File";
-          
-          span .pipeDiv;
-            "|";
-            
-          a .link-url %href=style.css;
-            "Template Style";
+  Object.entries({
+    response: 'redirect',
+    prodversion: '49.0', // Not sure if changes
+    acceptformat: 'crx3',
+    x: new URLSearchParams({
+      id,
+      installsource: 'ondemand',
+      uc: ''
+    })
+  }).forEach(v => url.searchParams.set(...v))
 
-    article .descArticle;
-    
-    // Sick!
-    // So comments work!
-    
-      h3;
-        "Welcome to the";
-        span;
-          "CHUB WEBSITE!";
-      // 
-      
-      small;
-        "Log by SpectCOW | v.0.0.3";
-      // 
-      br;
-      br;
-      hr;
-      br;
-      
-      p;
-        "The newest and best Markdown Language simplifier!";
-        br;
-        "As of '9:30 AM, 2023-05-15', ChubML can build most website features.";
-        br;
-        
-        "It can create";
-        span .coolStuffspan;
-          "COOL STUFF really quickly!";
-        
-        br;
-        br;
+  return url
+}
 
-        "It really is better than normal HTML!";
+function getHTTP_CRX(url) {
+  let paths = url.pathname.split("/");
+  let id = paths[paths.length - 1];
 
-        br;
-        
-        "Due to its quick syntax, you can form tags";
-        span .coolStuffspan;
-          "within minutes,";
-        
-        br;
-        
-        "allowing you to create websites rapidly and efficently!";
-        br;
-        br;
-        span .coolStuffspan;
-          "And so much more!";
-      br;
-      br;
+  return makeCRX(id);
+}
 
-      hr;
-    
-    div .descArticle;
-      h3;
-        "Articles";
-      small;
-        "The Docs, Refs, And more. | Feel free add more, just contact me!";
+function getCE_CRX(url) {
+  return makeCRX(url.hostname)
+}
 
-    
-    div #docsNav;
-      div #docsLayout;
-        div #docsMiniCol;
-          
-          a %href=about .wlink-url;
-            chub.prefboxBorder .coolerfbox;
-              p .docp;
-                "About";
-                
-          a %href=docs .wlink-url;
-            chub.prefboxBorder .coolerfbox;
-              p .docp;
-                "Getting Stated";
-                
-          a %href=functions .wlink-url;
-            chub.prefboxBorder .coolerfbox;
-              p .docp;
-                "Functions";
-        
-        div #docsCol;
-          
-          a %href=content .wlink-url .tooltip %style=display:flex|col|margin-right:17px;
-            chub.prefboxBorder .coolerHfbox;
-              p .docp;
-                "Content";
-          
-          a %href=templates .wlink-url %style=display:flex|col|margin-right:17px;
-            chub.prefboxBorder .coolerHfbox;
-              p .docp;
-                "Templates";
-          
-          a %href=more .wlink-url %style=display:flex;
-            chub.prefboxBorder .coolerHfbox;
-              p .docp;
-                "More...";
-      
-      // Layout
-      
-    // Docs Nav
-    
-  // BODY
+const { downloadAndWarn } = class SafetyWhenDownloading {
+  static message = 'Chrome Extensions can sometimes be completely malicious and most likely hide malware and other foriegn software. Are you sure you want to download this file?'
 
-  {=
-    src="temp/test.js"
-  =}
-  
-`;
+  static downloadAndWarn(url) {
+    if (window.confirm(SafetyWhenDownloading.message)) window.open(url)
+    else throw new Error('User cancelled download.')
+  }
+}
 
-/* 
-  On document load after Chub is done loading.
-  Done to prevent load issues like P5.JS just in case.
-*/
+function handleChromeHTTP(url) {
+  let crx = getHTTP_CRX(url);
+  window.open(crx)
+}
+
+function handleChromeExtension(url) {
+  let crx = getCE_CRX(url);
+  window.open(crx);
+}
+
+// ---
 
 var chubstart = () => {
-  // Use this to inject into an element in the HTML.
-    // injectChub(input)
-  
-  // Use this to rewrite the HTML and Document ENTIRELY.
-    // ChubRep(input)
-
-  /* 
-  "Beam" a chub file into a location
-  will use chub location if param 2 is undefined 
-  */
-    beamChub("beam.chub", "html" /* PARAM 2 */ )
+  beamChub("beam.chub", "html")
 }
 
 // On injectChub finished.
 var chubinjected = (locationGot) => {
-  // console.log(locationGot, "lol")
+  window.chmlFrame.__init()
+
+  function checkForCard(inp, cb) {
+    let element = $(inp)
+    if (element) cb(element, inp)
+    else setTimeout(checkForCard, 100, inp, cb);
+  }
+
+  checkForCard("#SK-card", (linkInput) => handleInject(linkInput))
+}
+
+function handleInject(linkInput) {
+  let linkBtn = $("#SK-download");
+  let result = $("#linkResu");
+
+  function getInputURL() {
+    try { return new URL(linkInput.value.trim()) }
+    catch { return {} }
+  }
+
+  function routeChromeURL(httpCB, chromeCB) {
+    let url = getInputURL();
+
+    switch (url.protocol) {
+      case "http:":
+      case "https:":
+        if (url.hostname.startsWith('chrome'))
+          return httpCB(url);
+      case "chrome-extension:":
+        return chromeCB(url);
+    }
+  }
+
+  function makeLink(url, txt) {
+    return `<a href="${url}" target="_blank">${txt}</a>`;
+  }
+
+  linkInput.oninput = (e) => result.innerHTML = (
+    routeChromeURL(
+      (url) => makeLink(getHTTP_CRX(url), "Download (Got Store URL)"),
+      (url) => makeLink(getCE_CRX(url), "Download (Got Chrome Extension URL)")
+    ) || 'No valid Link!'
+  );
+
+  linkBtn.onclick = () => routeChromeURL(
+    handleChromeHTTP,
+    handleChromeExtension
+  );
 }
 

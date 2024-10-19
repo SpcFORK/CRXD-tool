@@ -1,0 +1,351 @@
+<style>
+  main {
+    /* Center */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 23px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  h3 {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  p {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  blockquote {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  pre {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 23px;
+  }
+
+  .skeuomorphic-card {
+    dispay: block;
+    align-self: stretch;
+    justify-self: stretch;
+    background: #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 0px 40px -6px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .skeuomorphic-button {
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #888;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px #666;
+    transition: all 0.1s;
+  }
+
+  .skeuomorphic-button.bond {
+    position: absolute !important;
+    display: inline-flex !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 10px;
+    background: #fff;
+    z-index: -1;
+    transition: all 0.1s;
+    justify-self: stretch !important;
+    align-self: stretch !important;
+  }
+
+
+  .skeuomorphic-button:active {
+    box-shadow: 0 2px #666 !important;
+    transform: translateY(4px);
+  }
+
+  .skeuomorphic-button:focus {
+    outline: none;
+    background-color: #555 !important;
+    box-shadow: 0 2px #444 !important;
+    transform: translateY(4px) !important;
+  }
+
+  .skeuomorphic-button:hover {
+    box-shadow: 0 5px #666;
+    background-color: #777;
+    cursor: pointer;
+  }
+
+  .skeuomorphic-card h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .skeuomorphic-card p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .skeuomorphic-card button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .skeuomorphic-input {
+    padding: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #888;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px #666;
+    transition: all 0.1s;
+  }
+
+  .skeuomorphic-form input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .skeuomorphic-input:focus {
+    outline: none;
+    background-color: #555 !important;
+    box-shadow: 0 2px #444 !important;
+    transform: translateY(4px) !important;
+  }
+
+  .skeuomorphic-input:hover {
+    box-shadow: 0 5px #666;
+    background-color: #777;
+    cursor: pointer;
+  }
+
+  .skeuomorphic-input:active {
+    box-shadow: 0 2px #666 !important;
+    transform: translateY(4px);
+  }
+
+  .skeuomorphic-input::placeholder {
+    color: #fff;
+  }
+
+  .skeuomorphic-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  hr {
+    border-color: #0005;
+  }
+
+  br.spacer,
+  hr.spacer {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    border: none #fff0;
+    opacity: 0;
+  }
+
+  /*  */
+
+  .ImageWithSidetext {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .ImageWithSidetext img {
+    width: 40%;
+    height: 40%;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .ImageWithSidetext p {
+    width: 60%;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .ImageWithSidetext p span {
+    font-weight: bold;
+  }
+
+  .ImageWithSidetext .iws-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+<main id="">
+  <div class="skeuomorphic-card helv">
+    <article>
+      <h1>
+        <b>
+          CRX Finder
+        </b>
+      </h1>
+
+      <p>
+        This tool is used to find CRX files on the Chrome Web Store.
+      </p>
+
+      <p>
+        <b>
+          How to use:
+        </b>
+      </p>
+
+      <p>
+        1. Enter the ID of the Chrome Web Store item you want to find.
+        <br>
+        2. Click the "Find" button.
+        <br>
+        3. Wait for the tool to finish.
+        <br>
+        4. Click the "Download" button to download the CRX file.
+      </p>
+      </p>
+    </article>
+
+    <hr class="spacer" style="height: 5px">
+    <hr>
+    <h1 id="linkResu">No Link!</h1>
+    <hr>
+    <hr class="spacer" style="height: 5px">
+
+    <form class="skeuomorphic-form">
+
+
+      <input id="SK-card" type="text" class="skeuomorphic-input bond" placeholder="Enter CRX LINK">
+
+      <hr class="spacer">
+
+    </form>
+
+    <button id="SK-download" class="skeuomorphic-button" style="
+      height: 50px;  
+    ">
+      <span>Download</span>
+    </button>
+
+  </div>
+</main>
+
+<main>
+  <div class="skeuomorphic-card helv">
+    <article>
+      <!-- 
+      |''''''''''|
+      |  image   | TEXT
+      |__________|
+      -->
+
+      <div class="ImageWithSidetext">
+        <img src="spc.png" alt="image"
+          style="width: 120px; height: 120px; border-radius:6px; /* Add Shadow */ box-shadow: 0 5px 20px -6px #666;">
+        <br>
+        <div id="iws-side">
+          <h1>
+            <b>
+              By SpcFORK
+            </b>
+            <small>@SpcFORK</small>
+            <br>
+          </h1>
+          <p style="width: max-content;">
+            Coolest Cow ever.
+          </p>
+        </div>
+
+        <hr class="spacer" style="width: 5px !important">
+
+        <div id="iws-side" style="display: flex;">
+          <!-- Social Buttons -->
+          <button id="SK-download" class="skeuomorphic-button" onclick="window.open('https://x.com/spectcow')" style="
+              height: 100px;
+              width: 100px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          ">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
+              <path
+                d="M 50.0625 10.4375 C 48.214844 11.257813 46.234375 11.808594 44.152344 12.058594 C 46.277344 10.785156 47.910156 8.769531 48.675781 6.371094 C 46.691406 7.546875 44.484375 8.402344 42.144531 8.863281 C 40.269531 6.863281 37.597656 5.617188 34.640625 5.617188 C 28.960938 5.617188 24.355469 10.21875 24.355469 15.898438 C 24.355469 16.703125 24.449219 17.488281 24.625 18.242188 C 16.078125 17.8125 8.503906 13.71875 3.429688 7.496094 C 2.542969 9.019531 2.039063 10.785156 2.039063 12.667969 C 2.039063 16.234375 3.851563 19.382813 6.613281 21.230469 C 4.925781 21.175781 3.339844 20.710938 1.953125 19.941406 C 1.953125 19.984375 1.953125 20.027344 1.953125 20.070313 C 1.953125 25.054688 5.5 29.207031 10.199219 30.15625 C 9.339844 30.390625 8.429688 30.515625 7.492188 30.515625 C 6.828125 30.515625 6.183594 30.453125 5.554688 30.328125 C 6.867188 34.410156 10.664063 37.390625 15.160156 37.472656 C 11.644531 40.230469 7.210938 41.871094 2.390625 41.871094 C 1.558594 41.871094 0.742188 41.824219 -0.0585938 41.726563 C 4.488281 44.648438 9.894531 46.347656 15.703125 46.347656 C 34.617188 46.347656 44.960938 30.679688 44.960938 17.09375 C 44.960938 16.648438 44.949219 16.199219 44.933594 15.761719 C 46.941406 14.3125 48.683594 12.5 50.0625 10.4375 Z"
+                style="fill: #fff5;"></path>"
+              >
+              </path>
+            </svg>
+          </button>
+
+          <hr class="spacer" style="width: 25px !important">
+
+          <button id="SK-download" class="skeuomorphic-button" onclick="window.open('https://replit.com/@SpcFORK')"
+            style="
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          ">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+              <path fill="#fff5" d="M15,6.438h11v11.375H15c-1.657,0-3-1.343-3-3V9.438C12,7.781,13.343,6.438,15,6.438z">
+              </path>
+              <path fill="#fff5"
+                d="M15,29.188h11v11.375H15c-1.657,0-3-1.343-3-3v-5.375C12,30.531,13.343,29.188,15,29.188z"></path>
+              <path fill="#fff5" d="M26,17.812h11c1.657,0,3,1.343,3,3v5.375c0,1.657-1.343,3-3,3H26V17.812z"></path>
+            </svg>
+          </button>
+
+          <hr class="spacer" style="width: 25px !important">
+
+        </div>
+
+      </div>
+    </article>
+  </div>
+</main>
